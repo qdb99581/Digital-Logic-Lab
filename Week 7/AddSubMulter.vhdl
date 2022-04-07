@@ -15,8 +15,8 @@ architecture Structure of AddSubMulter is
     signal output: std_logic_vector(7 downto 0);
 
 begin
-    A_int <= to_integer(unsigned(A));
-    B_int <= to_integer(unsigned(B));
+    A_int <= to_integer(signed(A));
+    B_int <= to_integer(signed(B));
     S_int <= 
         A_int + B_int when F = "00" else
         A_int - B_int when F = "01" else

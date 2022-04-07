@@ -21,6 +21,7 @@ architecture Structure of Comparator4 is
 
     signal C0: std_logic_vector(3 downto 1);
     signal C1: std_logic_vector(3 downto 1);
+    -- Order does not matter in VHDL
     begin
         FC0: Comparator port map(Cin0, Cin1, A(0), B(0), C0(1), C1(1));
         FC1: Comparator port map(C0(1), C1(1), A(1), B(1), C0(2), C1(2));

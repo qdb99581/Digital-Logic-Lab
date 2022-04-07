@@ -15,26 +15,14 @@ architecture Structure of AddSubMulter is
     signal output: std_logic_vector(7 downto 0);
 
 begin
-    A_int <= 
-        to_integer(unsigned(A)) when F = "00" else
-        to_integer(signed(A)) when F = "01" else
-        to_integer(signed(A)) when F = "10";
-
-    B_int <= 
-        to_integer(unsigned(B)) when F = "00" else
-        to_integer(signed(B)) when F = "01" else
-        to_integer(signed(B)) when F = "10";
-
+    A_int <= to_integer(unsigned(A));
+    B_int <= to_integer(unsigned(B));
     S_int <= 
         A_int + B_int when F = "00" else
         A_int - B_int when F = "01" else
         A_int * B_int when F = "10";
 
-    output <= 
-        std_logic_vector(to_unsigned(S_int, 8)) when F = "00" else
-        std_logic_vector(to_signed(S_int, 8)) when F = "01" else
-        std_logic_vector(to_signed(S_int, 8)) when F = "10";
-
+    output <= std_logic_vector(to_signed(S_int, 8));
     S <= output(7 downto 0);
         
 end Structure;

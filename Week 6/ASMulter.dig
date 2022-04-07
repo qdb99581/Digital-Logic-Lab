@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>AddSubMulter</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>A:4,B:4,F:2</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+entity AddSubMulter is
+    port(
+        A, B: in std_logic_vector(3 downto 0);
+        F: in std_logic_vector(1 downto 0); -- Select
+        S: out std_logic_vector(7 downto 0)
+    );
+end AddSubMulter;
+
+architecture Structure of AddSubMulter is
+    signal A_int, B_int, S_int: integer := 0;
+    signal output: std_logic_vector(7 downto 0);
+
+begin
+    A_int &lt;= 
+        to_integer(unsigned(A)) when F = &quot;00&quot; else
+        to_integer(signed(A)) when F = &quot;01&quot; else
+        to_integer(signed(A)) when F = &quot;10&quot;;
+
+    B_int &lt;= 
+        to_integer(unsigned(B)) when F = &quot;00&quot; else
+        to_integer(signed(B)) when F = &quot;01&quot; else
+        to_integer(signed(B)) when F = &quot;10&quot;;
+
+    S_int &lt;= 
+        A_int + B_int when F = &quot;00&quot; else
+        A_int - B_int when F = &quot;01&quot; else
+        A_int * B_int when F = &quot;10&quot;;
+
+    output &lt;= 
+        std_logic_vector(to_unsigned(S_int, 8)) when F = &quot;00&quot; else
+        std_logic_vector(to_signed(S_int, 8)) when F = &quot;01&quot; else
+        std_logic_vector(to_signed(S_int, 8)) when F = &quot;10&quot;;
+
+    S &lt;= output(7 downto 0);
+        
+end Structure;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>S:8</string>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>SA</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>8</int>
+        </entry>
+      </elementAttributes>
+      <pos x="900" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="440" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="440" y="540"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>F</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>2</int>
+        </entry>
+      </elementAttributes>
+      <pos x="440" y="580"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="440" y="500"/>
+      <p2 x="680" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="580"/>
+      <p2 x="520" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="740" y="520"/>
+      <p2 x="900" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="500" y="520"/>
+      <p2 x="680" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="540"/>
+      <p2 x="500" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="540"/>
+      <p2 x="680" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="500" y="520"/>
+      <p2 x="500" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="520" y="540"/>
+      <p2 x="520" y="580"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

@@ -16,8 +16,11 @@ architecture ABFF1 of ABFF is
     begin
         input <= A & B;
         Q_next <= Qint;
-
-        process(CLK) -- seems this is necessary for using "if-else"
+        
+        -- seems this is necessary for using "if-else"
+        -- process makes program to execute in order
+        -- only when args' value changes, the process begin
+        process(CLK) 
         begin
             if CLK'event and CLK = '1' then -- rising edge of CLK
                 Qint <=

@@ -31,3 +31,25 @@ architecture ABFF1 of ABFF is
             end if;
         end process;
 end ABFF1;
+
+-- LIBRARY ieee;
+-- USE ieee.std_logic_1164.all;
+-- USE ieee.numeric_std.all;
+
+-- entity ABFF is
+--     port (
+--         A, B, CLK: in std_logic;
+--         Q: out std_logic);
+-- end ABFF;
+
+-- architecture ABFF1 of ABFF is
+--     signal Qint: std_logic;
+--     begin
+--         Q <= Qint;
+--     process (CLK)
+--     begin
+--         if CLK'event and CLK = '1' then
+--             Qint <= (A and not Qint) or (B and Qint);
+--         end if;
+--     end process;
+-- end ABFF1;

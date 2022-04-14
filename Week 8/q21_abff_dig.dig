@@ -7,12 +7,12 @@
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>ABFF</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>ABFF</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -38,8 +38,11 @@ architecture ABFF1 of ABFF is
     begin
         input &lt;= A &amp; B;
         Q_next &lt;= Qint;
-
-        process(CLK) -- seems this is necessary for using &quot;if-else&quot;
+        
+        -- seems this is necessary for using &quot;if-else&quot;
+        -- process makes program to execute in order
+        -- only when args&apos; value changes, the process begin
+        process(CLK) 
         begin
             if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
                 Qint &lt;=
@@ -86,12 +89,12 @@ end ABFF1;</string>
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>CLK</string>
-        </entry>
-        <entry>
           <string>runRealTime</string>
           <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
         </entry>
       </elementAttributes>
       <pos x="720" y="520"/>
@@ -109,36 +112,36 @@ end ABFF1;</string>
   </visualElements>
   <wires>
     <wire>
-      <p1 x="720" y="480"/>
-      <p2 x="920" y="480"/>
-    </wire>
-    <wire>
       <p1 x="1020" y="480"/>
       <p2 x="1160" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="480"/>
+      <p2 x="920" y="480"/>
     </wire>
     <wire>
       <p1 x="760" y="500"/>
       <p2 x="920" y="500"/>
     </wire>
     <wire>
-      <p1 x="720" y="440"/>
-      <p2 x="760" y="440"/>
-    </wire>
-    <wire>
       <p1 x="720" y="520"/>
       <p2 x="760" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="440"/>
+      <p2 x="760" y="440"/>
     </wire>
     <wire>
       <p1 x="760" y="460"/>
       <p2 x="920" y="460"/>
     </wire>
     <wire>
-      <p1 x="760" y="440"/>
-      <p2 x="760" y="460"/>
-    </wire>
-    <wire>
       <p1 x="760" y="500"/>
       <p2 x="760" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="440"/>
+      <p2 x="760" y="460"/>
     </wire>
   </wires>
   <measurementOrdering/>

@@ -16,8 +16,11 @@ architecture ABFF1 of ABFF is
     begin
         input <= A & B;
         Q_next <= Qint;
-
-        process(CLK) -- seems this is necessary for using "if-else"
+        
+        -- seems this is necessary for using "if-else"
+        -- process makes program to execute in order
+        -- only when args' value changes, the process begin
+        process(CLK) 
         begin
             if CLK'event and CLK = '1' then -- rising edge of CLK
                 Qint <=
@@ -28,3 +31,25 @@ architecture ABFF1 of ABFF is
             end if;
         end process;
 end ABFF1;
+
+-- LIBRARY ieee;
+-- USE ieee.std_logic_1164.all;
+-- USE ieee.numeric_std.all;
+
+-- entity ABFF is
+--     port (
+--         A, B, CLK: in std_logic;
+--         Q: out std_logic);
+-- end ABFF;
+
+-- architecture ABFF1 of ABFF is
+--     signal Qint: std_logic;
+--     begin
+--         Q <= Qint;
+--     process (CLK)
+--     begin
+--         if CLK'event and CLK = '1' then
+--             Qint <= (A and not Qint) or (B and Qint);
+--         end if;
+--     end process;
+-- end ABFF1;

@@ -13,7 +13,7 @@ end my_SRAM;
 
 architecture SRAM_four of my_SRAM is
     type memory is array(3 downto 0) of std_logic_vector(3 downto 0);
-    signal SRAM_internal: memory := ("0011", "0010", "0001", "0000");
+    signal SRAM_internal: memory := ("0000", "0000", "0000", "0000");
     signal Address_int: integer;
     signal Address_temp: std_logic_vector(3 downto 0);
 

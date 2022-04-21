@@ -229,7 +229,7 @@ architecture SRAM_four of my_SRAM is
           <int>8</int>
         </entry>
       </elementAttributes>
-      <pos x="1380" y="480"/>
+      <pos x="1460" y="480"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -243,7 +243,7 @@ architecture SRAM_four of my_SRAM is
           <int>2</int>
         </entry>
       </elementAttributes>
-      <pos x="1240" y="540"/>
+      <pos x="1320" y="540"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -253,7 +253,7 @@ architecture SRAM_four of my_SRAM is
           <string>Chip</string>
         </entry>
       </elementAttributes>
-      <pos x="1240" y="580"/>
+      <pos x="1320" y="580"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -263,7 +263,7 @@ architecture SRAM_four of my_SRAM is
           <string>Write</string>
         </entry>
       </elementAttributes>
-      <pos x="1240" y="620"/>
+      <pos x="1320" y="620"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
@@ -273,7 +273,7 @@ architecture SRAM_four of my_SRAM is
           <string>Read</string>
         </entry>
       </elementAttributes>
-      <pos x="1240" y="660"/>
+      <pos x="1320" y="660"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -287,7 +287,7 @@ architecture SRAM_four of my_SRAM is
     </wire>
     <wire>
       <p1 x="1180" y="480"/>
-      <p2 x="1380" y="480"/>
+      <p2 x="1460" y="480"/>
     </wire>
     <wire>
       <p1 x="720" y="640"/>
@@ -306,8 +306,8 @@ architecture SRAM_four of my_SRAM is
       <p2 x="400" y="580"/>
     </wire>
     <wire>
-      <p1 x="1240" y="580"/>
-      <p2 x="1320" y="580"/>
+      <p1 x="1320" y="580"/>
+      <p2 x="1400" y="580"/>
     </wire>
     <wire>
       <p1 x="720" y="740"/>
@@ -322,12 +322,12 @@ architecture SRAM_four of my_SRAM is
       <p2 x="1000" y="520"/>
     </wire>
     <wire>
-      <p1 x="1320" y="520"/>
-      <p2 x="1380" y="520"/>
+      <p1 x="1400" y="520"/>
+      <p2 x="1460" y="520"/>
     </wire>
     <wire>
-      <p1 x="1540" y="520"/>
-      <p2 x="1600" y="520"/>
+      <p1 x="1620" y="520"/>
+      <p2 x="1660" y="520"/>
     </wire>
     <wire>
       <p1 x="720" y="680"/>
@@ -358,8 +358,8 @@ architecture SRAM_four of my_SRAM is
       <p2 x="1160" y="620"/>
     </wire>
     <wire>
-      <p1 x="1240" y="620"/>
-      <p2 x="1340" y="620"/>
+      <p1 x="1320" y="620"/>
+      <p2 x="1420" y="620"/>
     </wire>
     <wire>
       <p1 x="640" y="780"/>
@@ -382,8 +382,8 @@ architecture SRAM_four of my_SRAM is
       <p2 x="960" y="400"/>
     </wire>
     <wire>
-      <p1 x="1360" y="560"/>
-      <p2 x="1380" y="560"/>
+      <p1 x="1440" y="560"/>
+      <p2 x="1460" y="560"/>
     </wire>
     <wire>
       <p1 x="500" y="500"/>
@@ -402,8 +402,8 @@ architecture SRAM_four of my_SRAM is
       <p2 x="1140" y="500"/>
     </wire>
     <wire>
-      <p1 x="1300" y="500"/>
-      <p2 x="1380" y="500"/>
+      <p1 x="1380" y="500"/>
+      <p2 x="1460" y="500"/>
     </wire>
     <wire>
       <p1 x="720" y="660"/>
@@ -414,12 +414,12 @@ architecture SRAM_four of my_SRAM is
       <p2 x="840" y="660"/>
     </wire>
     <wire>
-      <p1 x="1240" y="660"/>
-      <p2 x="1360" y="660"/>
+      <p1 x="1320" y="660"/>
+      <p2 x="1440" y="660"/>
     </wire>
     <wire>
       <p1 x="260" y="340"/>
-      <p2 x="1600" y="340"/>
+      <p2 x="1660" y="340"/>
     </wire>
     <wire>
       <p1 x="720" y="600"/>
@@ -450,12 +450,12 @@ architecture SRAM_four of my_SRAM is
       <p2 x="760" y="700"/>
     </wire>
     <wire>
-      <p1 x="1240" y="540"/>
-      <p2 x="1300" y="540"/>
+      <p1 x="1320" y="540"/>
+      <p2 x="1380" y="540"/>
     </wire>
     <wire>
-      <p1 x="1340" y="540"/>
-      <p2 x="1380" y="540"/>
+      <p1 x="1420" y="540"/>
+      <p2 x="1460" y="540"/>
     </wire>
     <wire>
       <p1 x="320" y="620"/>
@@ -470,20 +470,24 @@ architecture SRAM_four of my_SRAM is
       <p2 x="960" y="500"/>
     </wire>
     <wire>
-      <p1 x="1600" y="340"/>
-      <p2 x="1600" y="520"/>
+      <p1 x="1440" y="560"/>
+      <p2 x="1440" y="660"/>
     </wire>
     <wire>
       <p1 x="260" y="340"/>
       <p2 x="260" y="600"/>
     </wire>
     <wire>
+      <p1 x="1380" y="500"/>
+      <p2 x="1380" y="540"/>
+    </wire>
+    <wire>
       <p1 x="1160" y="500"/>
       <p2 x="1160" y="620"/>
     </wire>
     <wire>
-      <p1 x="1320" y="520"/>
-      <p2 x="1320" y="580"/>
+      <p1 x="1420" y="540"/>
+      <p2 x="1420" y="620"/>
     </wire>
     <wire>
       <p1 x="400" y="480"/>
@@ -498,10 +502,6 @@ architecture SRAM_four of my_SRAM is
       <p2 x="880" y="600"/>
     </wire>
     <wire>
-      <p1 x="1360" y="560"/>
-      <p2 x="1360" y="660"/>
-    </wire>
-    <wire>
       <p1 x="500" y="200"/>
       <p2 x="500" y="400"/>
     </wire>
@@ -514,16 +514,16 @@ architecture SRAM_four of my_SRAM is
       <p2 x="660" y="600"/>
     </wire>
     <wire>
-      <p1 x="1300" y="500"/>
-      <p2 x="1300" y="540"/>
+      <p1 x="1400" y="520"/>
+      <p2 x="1400" y="580"/>
     </wire>
     <wire>
       <p1 x="1080" y="320"/>
       <p2 x="1080" y="460"/>
     </wire>
     <wire>
-      <p1 x="1340" y="540"/>
-      <p2 x="1340" y="620"/>
+      <p1 x="1660" y="340"/>
+      <p2 x="1660" y="520"/>
     </wire>
   </wires>
   <measurementOrdering/>

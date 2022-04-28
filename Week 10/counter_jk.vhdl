@@ -25,7 +25,7 @@ begin
     process(CLK)
     begin
         if (rising_edge(CLK)) then
-            Q(2) <= (not T(2) and Q0) or (T(2) and not Q0);
+            Q(2) <= (not T(2) and Q0) or (T(2) and not Q0); 
             Q(1) <= (not T(1) and Q1) or (T(1) and not Q1);
             Q(0) <= (not T(0) and Q2) or (T(0) and not Q2);
         end if;

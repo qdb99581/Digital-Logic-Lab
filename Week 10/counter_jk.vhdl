@@ -12,8 +12,8 @@ entity my_counter is
 end my_counter;
 
 architecture bool_state of my_counter is
-    signal T: std_logic_vector(2 downto 0) := "000";
-    signal Q: std_logic_vector(2 downto 0) := "000";
+    signal T: std_logic_vector(2 downto 0) := "000"; -- [c, b, a]
+    signal Q: std_logic_vector(2 downto 0) := "000"; -- [c, b, a]
 begin
     T(2) <= ((not Q0) and (not Q1)) or ((not Q1) and (not Q2)) or (Q1 and Q2);
     T(1) <= (not Q0) or Q1 or (not Q2);

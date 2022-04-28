@@ -20,6 +20,7 @@ begin
 	Q0 <= Q(2);
 	Q1 <= Q(1);
 	Q2 <= Q(0);
+    
 	process(CLK) is
  	begin
  		if(rising_edge(CLK)) then

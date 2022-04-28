@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>my_counter</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>CLK</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+
+entity my_counter is	
+	port(
+		-- Input ports
+		CLK	: in  std_logic;
+		
+		-- Output ports		
+		a_out, b_out, c_out	: out std_logic
+    );
+end my_counter;
+
+architecture state_graph of my_counter is	
+	signal z : std_logic_vector(2 downto 0) := &quot;000&quot;;
+begin
+	a_out &lt;= z(0);
+	b_out &lt;= z(1);
+	c_out &lt;= z(2);
+	process(clk) is
+ 	begin
+ 		if(rising_edge(clk)) then
+			if(z = &quot;000&quot;) then z &lt;= &quot;111&quot;;
+			elsif(z = &quot;111&quot;) then z &lt;= &quot;001&quot;;
+			elsif(z = &quot;001&quot;) then z &lt;= &quot;110&quot;;
+			elsif(z = &quot;110&quot;) then z &lt;= &quot;101&quot;;
+            elsif(z = &quot;101&quot;) then z &lt;= &quot;100&quot;;
+            elsif(z = &quot;100&quot;) then z &lt;= &quot;010&quot;;
+			else z &lt;= &quot;000&quot;;
+			end if;
+		end if;
+	end process; 
+end state_graph;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>a_out,b_out,c_out</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="780" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="620" y="500"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1120" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1080" y="600"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="620" y="500"/>
+      <p2 x="780" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="500"/>
+      <p2 x="1160" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="520"/>
+      <p2 x="1120" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="880" y="540"/>
+      <p2 x="1080" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="520"/>
+      <p2 x="1120" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="540"/>
+      <p2 x="1080" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="500"/>
+      <p2 x="1160" y="600"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

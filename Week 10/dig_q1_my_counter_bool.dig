@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>my_counter</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>CLK</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+entity my_counter is	
+	port(
+		-- Input ports
+		CLK: in std_logic;
+		
+		-- Output ports		
+		Q0, Q1, Q2: out std_logic
+    );
+end my_counter;
+
+architecture bool_state of my_counter is
+    signal T: std_logic_vector(2 downto 0) := &quot;000&quot;;
+    signal Q: std_logic_vector(2 downto 0) := &quot;000&quot;;
+begin
+    T(2) &lt;= ((not Q0) and (not Q1)) or ((not Q1) and (not Q2)) or (Q1 and Q2);
+    T(1) &lt;= (not Q0) or Q1 or (not Q2);
+    T(0) &lt;= ((not Q0) and (not Q1)) or (Q0 and Q1 and (not Q2)) or ((not Q1) and Q2);
+	Q0 &lt;= Q(2);
+	Q1 &lt;= Q(1);
+	Q2 &lt;= Q(0);
+
+    process(CLK)
+    begin
+        if (rising_edge(CLK)) then
+            Q(2) &lt;= (not T(2) and Q0) or (T(2) and not Q0);
+            Q(1) &lt;= (not T(1) and Q1) or (T(1) and not Q1);
+            Q(0) &lt;= (not T(0) and Q2) or (T(0) and not Q2);
+        end if;
+    end process;
+end bool_state;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Q0,Q1,Q2</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1060" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1100" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1140" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes/>
+      <pos x="660" y="480"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="660" y="480"/>
+      <p2 x="860" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="480"/>
+      <p2 x="1060" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="500"/>
+      <p2 x="1100" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="960" y="520"/>
+      <p2 x="1140" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="420"/>
+      <p2 x="1060" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1140" y="420"/>
+      <p2 x="1140" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="1100" y="420"/>
+      <p2 x="1100" y="500"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>my_fsm</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>X,CLK</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+
+entity my_fsm is	
+	port(
+		-- Input ports
+        X: in std_logic;
+		CLK: in std_logic;
+		
+		-- Output ports		
+		Q0, Q1, Q2: out std_logic;
+        Z: out std_logic
+    );
+end my_fsm;
+
+architecture state_graph of my_fsm is	
+	signal Q : std_logic_vector(2 downto 0) := &quot;000&quot;;
+begin
+	Q0 &lt;= Q(2);
+	Q1 &lt;= Q(1);
+	Q2 &lt;= Q(0);
+	process(CLK) is
+ 	begin
+ 		if(rising_edge(CLK)) then
+            if (X = &apos;0&apos;) then
+                if (Q = &quot;000&quot;) then Q &lt;= &quot;001&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;001&quot;) then Q &lt;= &quot;010&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;010&quot;) then Q &lt;= &quot;001&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;011&quot;) then Q &lt;= &quot;100&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;100&quot;) then Q &lt;= &quot;011&quot;; Z &lt;= &apos;0&apos;;
+                else Q &lt;= &quot;000&quot;; Z &lt;= &apos;0&apos;;
+                end if;
+            else
+                if (Q = &quot;000&quot;) then Q &lt;= &quot;011&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;001&quot;) then Q &lt;= &quot;011&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;010&quot;) then Q &lt;= &quot;011&quot;; Z &lt;= &apos;1&apos;;
+                elsif (Q = &quot;011&quot;) then Q &lt;= &quot;000&quot;; Z &lt;= &apos;0&apos;;
+                elsif (Q = &quot;100&quot;) then Q &lt;= &quot;000&quot;; Z &lt;= &apos;1&apos;;
+                else Q &lt;= &quot;000&quot;; Z &lt;= &apos;0&apos;;
+                end if;
+			end if;
+		end if;
+	end process; 
+end state_graph;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Q0,Q1,Q2,Z</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1020" y="620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="840" y="620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+      </elementAttributes>
+      <pos x="840" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Q0</string>
+        </entry>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+      </elementAttributes>
+      <pos x="1180" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Q1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1220" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Q2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1260" y="560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Z</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1300" y="560"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="980" y="640"/>
+      <p2 x="1020" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="640"/>
+      <p2 x="1220" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="660"/>
+      <p2 x="980" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="660"/>
+      <p2 x="1260" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="680"/>
+      <p2 x="1300" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="620"/>
+      <p2 x="1020" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="620"/>
+      <p2 x="1180" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="980" y="640"/>
+      <p2 x="980" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1220" y="560"/>
+      <p2 x="1220" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="560"/>
+      <p2 x="1300" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1180" y="560"/>
+      <p2 x="1180" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1260" y="560"/>
+      <p2 x="1260" y="660"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

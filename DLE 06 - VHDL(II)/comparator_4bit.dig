@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <circuit>
-  <version>1</version>
+  <version>2</version>
   <attributes/>
   <visualElements>
     <visualElement>
@@ -22,84 +22,86 @@
           <string>Code</string>
           <string>-- 4-bit Comparator
 LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-USE ieee.numeric_std.all;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity Comparator4 is
-    port (
-        X, Y: in std_logic_vector(3 downto 0);
-        C0: in std_logic_vector(1 downto 0);
-        C4: out std_logic_vector(1 downto 0));
-end Comparator4;
+ENTITY Comparator4 IS
+    PORT (
+        X, Y : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        C0 : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        C4 : OUT STD_LOGIC_VECTOR(1 DOWNTO 0));
+END Comparator4;
 
-architecture Structure of Comparator4 is
-    component Comparator1
-        port (X, Y: in std_logic; 
-              Ci: in std_logic_vector(1 downto 0);
-              Ci_next: out std_logic_vector(1 downto 0));
-    end component;
+ARCHITECTURE Structure OF Comparator4 IS
+    COMPONENT Comparator1
+        PORT (
+            X, Y : IN STD_LOGIC;
+            Ci : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+            Ci_next : OUT STD_LOGIC_VECTOR(1 DOWNTO 0));
+    END COMPONENT;
 
-    signal C1: std_logic_vector(1 downto 0);
-    signal C2: std_logic_vector(1 downto 0);
-    signal C3: std_logic_vector(1 downto 0);
+    SIGNAL C1 : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    SIGNAL C2 : STD_LOGIC_VECTOR(1 DOWNTO 0);
+    SIGNAL C3 : STD_LOGIC_VECTOR(1 DOWNTO 0);
 
-    begin
-        FC0: Comparator1 port map(X(0), Y(0), C0, C1);
-        FC1: Comparator1 port map(X(1), Y(1), C1, C2);
-        FC2: Comparator1 port map(X(2), Y(2), C2, C3);
-        FC3: Comparator1 port map(X(3), Y(3), C3, C4);
-end Structure;
+BEGIN
+    FC0 : Comparator1 PORT MAP(X(0), Y(0), C0, C1);
+    FC1 : Comparator1 PORT MAP(X(1), Y(1), C1, C2);
+    FC2 : Comparator1 PORT MAP(X(2), Y(2), C2, C3);
+    FC3 : Comparator1 PORT MAP(X(3), Y(3), C3, C4);
+END Structure;
 
 -- 1-bit Comparator
 LIBRARY ieee;
-USE ieee.std_logic_1164.all;
-USE ieee.numeric_std.all;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
 
-entity Comparator1 is
-    port (X, Y: in std_logic;
-          Ci: in std_logic_vector(1 downto 0);
-          Ci_next: out std_logic_vector(1 downto 0));
-end Comparator1;
+ENTITY Comparator1 IS
+    PORT (
+        X, Y : IN STD_LOGIC;
+        Ci : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
+        Ci_next : OUT STD_LOGIC_VECTOR(1 DOWNTO 0));
+END Comparator1;
 
-architecture Equations of Comparator1 is
-    signal input: std_logic_vector(3 downto 0);
-    begin
-        input &lt;= Ci(0) &amp; Ci(1) &amp; X &amp; Y;
+ARCHITECTURE Equations OF Comparator1 IS
+    SIGNAL input : STD_LOGIC_VECTOR(3 DOWNTO 0);
+BEGIN
+    input &lt;= Ci(0) &amp; Ci(1) &amp; X &amp; Y;
 
-        Ci_next(0) &lt;= &apos;0&apos; when input = &quot;0000&quot; else
-            &apos;0&apos; when input = &quot;0001&quot; else
-            &apos;1&apos; when input = &quot;0010&quot; else
-            &apos;0&apos; when input = &quot;0011&quot; else
-            &apos;0&apos; when input = &quot;0100&quot; else
-            &apos;0&apos; when input = &quot;0101&quot; else
-            &apos;1&apos; when input = &quot;0110&quot; else
-            &apos;0&apos; when input = &quot;0111&quot; else
-            &apos;1&apos; when input = &quot;1000&quot; else
-            &apos;0&apos; when input = &quot;1001&quot; else
-            &apos;1&apos; when input = &quot;1010&quot; else
-            &apos;1&apos; when input = &quot;1011&quot; else
-            &apos;X&apos; when input = &quot;1100&quot; else
-            &apos;X&apos; when input = &quot;1101&quot; else
-            &apos;X&apos; when input = &quot;1110&quot; else
-            &apos;X&apos; when input = &quot;1111&quot;;
+    Ci_next(0) &lt;= &apos;0&apos; WHEN input = &quot;0000&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0001&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0010&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0011&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0100&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0101&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0110&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0111&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;1000&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;1001&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;1010&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;1011&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1100&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1101&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1110&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1111&quot;;
 
-        Ci_next(1) &lt;= &apos;0&apos; when input = &quot;0000&quot; else
-            &apos;1&apos; when input = &quot;0001&quot; else
-            &apos;0&apos; when input = &quot;0010&quot; else
-            &apos;0&apos; when input = &quot;0011&quot; else
-            &apos;1&apos; when input = &quot;0100&quot; else
-            &apos;1&apos; when input = &quot;0101&quot; else
-            &apos;0&apos; when input = &quot;0110&quot; else
-            &apos;1&apos; when input = &quot;0111&quot; else
-            &apos;0&apos; when input = &quot;1000&quot; else
-            &apos;1&apos; when input = &quot;1001&quot; else
-            &apos;0&apos; when input = &quot;1010&quot; else
-            &apos;0&apos; when input = &quot;1011&quot; else
-            &apos;X&apos; when input = &quot;1100&quot; else
-            &apos;X&apos; when input = &quot;1101&quot; else
-            &apos;X&apos; when input = &quot;1110&quot; else
-            &apos;X&apos; when input = &quot;1111&quot;;
-end Equations;</string>
+    Ci_next(1) &lt;= &apos;0&apos; WHEN input = &quot;0000&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0001&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0010&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0011&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0100&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0101&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;0110&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;0111&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;1000&quot; ELSE
+    &apos;1&apos; WHEN input = &quot;1001&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;1010&quot; ELSE
+    &apos;0&apos; WHEN input = &quot;1011&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1100&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1101&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1110&quot; ELSE
+    &apos;X&apos; WHEN input = &quot;1111&quot;;
+END Equations;</string>
         </entry>
         <entry>
           <string>externalOutputs</string>

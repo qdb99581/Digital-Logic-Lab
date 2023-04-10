@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Comparator4</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>X:4,Y:4,C0:2</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>-- 4-bit Comparator
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+entity Comparator4 is
+    port (
+        X, Y: in std_logic_vector(3 downto 0);
+        C0: in std_logic_vector(1 downto 0);
+        C4: out std_logic_vector(1 downto 0));
+end Comparator4;
+
+architecture Structure of Comparator4 is
+    component Comparator1
+        port (X, Y: in std_logic; 
+              Ci: in std_logic_vector(1 downto 0);
+              Ci_next: out std_logic_vector(1 downto 0));
+    end component;
+
+    signal C1: std_logic_vector(1 downto 0);
+    signal C2: std_logic_vector(1 downto 0);
+    signal C3: std_logic_vector(1 downto 0);
+
+    begin
+        FC0: Comparator1 port map(X(0), Y(0), C0, C1);
+        FC1: Comparator1 port map(X(1), Y(1), C1, C2);
+        FC2: Comparator1 port map(X(2), Y(2), C2, C3);
+        FC3: Comparator1 port map(X(3), Y(3), C3, C4);
+end Structure;
+
+-- 1-bit Comparator
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+entity Comparator1 is
+    port (X, Y: in std_logic;
+          Ci: in std_logic_vector(1 downto 0);
+          Ci_next: out std_logic_vector(1 downto 0));
+end Comparator1;
+
+architecture Equations of Comparator1 is
+    signal input: std_logic_vector(3 downto 0);
+    begin
+        input &lt;= Ci(0) &amp; Ci(1) &amp; X &amp; Y;
+
+        Ci_next(0) &lt;= &apos;0&apos; when input = &quot;0000&quot; else
+            &apos;0&apos; when input = &quot;0001&quot; else
+            &apos;1&apos; when input = &quot;0010&quot; else
+            &apos;0&apos; when input = &quot;0011&quot; else
+            &apos;0&apos; when input = &quot;0100&quot; else
+            &apos;0&apos; when input = &quot;0101&quot; else
+            &apos;1&apos; when input = &quot;0110&quot; else
+            &apos;0&apos; when input = &quot;0111&quot; else
+            &apos;1&apos; when input = &quot;1000&quot; else
+            &apos;0&apos; when input = &quot;1001&quot; else
+            &apos;1&apos; when input = &quot;1010&quot; else
+            &apos;1&apos; when input = &quot;1011&quot; else
+            &apos;X&apos; when input = &quot;1100&quot; else
+            &apos;X&apos; when input = &quot;1101&quot; else
+            &apos;X&apos; when input = &quot;1110&quot; else
+            &apos;X&apos; when input = &quot;1111&quot;;
+
+        Ci_next(1) &lt;= &apos;0&apos; when input = &quot;0000&quot; else
+            &apos;1&apos; when input = &quot;0001&quot; else
+            &apos;0&apos; when input = &quot;0010&quot; else
+            &apos;0&apos; when input = &quot;0011&quot; else
+            &apos;1&apos; when input = &quot;0100&quot; else
+            &apos;1&apos; when input = &quot;0101&quot; else
+            &apos;0&apos; when input = &quot;0110&quot; else
+            &apos;1&apos; when input = &quot;0111&quot; else
+            &apos;0&apos; when input = &quot;1000&quot; else
+            &apos;1&apos; when input = &quot;1001&quot; else
+            &apos;0&apos; when input = &quot;1010&quot; else
+            &apos;0&apos; when input = &quot;1011&quot; else
+            &apos;X&apos; when input = &quot;1100&quot; else
+            &apos;X&apos; when input = &quot;1101&quot; else
+            &apos;X&apos; when input = &quot;1110&quot; else
+            &apos;X&apos; when input = &quot;1111&quot;;
+end Equations;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>C4:2</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="480" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="440" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="400" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>X3</string>
+        </entry>
+      </elementAttributes>
+      <pos x="360" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y0</string>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="640" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="600" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Y3</string>
+        </entry>
+      </elementAttributes>
+      <pos x="560" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C00</string>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="760"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>C01</string>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="760"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1, 1, 1, 1</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="480" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1, 1, 1, 1</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>Input Splitting</string>
+          <string>1, 1</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>2</string>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="720"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Input Splitting</string>
+          <string>2</string>
+        </entry>
+        <entry>
+          <string>Output Splitting</string>
+          <string>1, 1</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1020" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>X_big</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="600"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Y_big</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1200" y="640"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="360" y="480"/>
+      <p2 x="420" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="560" y="480"/>
+      <p2 x="620" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="640"/>
+      <p2 x="1200" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="580"/>
+      <p2 x="820" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="740"/>
+      <p2 x="720" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="440"/>
+      <p2 x="460" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="640" y="440"/>
+      <p2 x="660" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="600"/>
+      <p2 x="820" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="600"/>
+      <p2 x="1020" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="600"/>
+      <p2 x="1200" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="460"/>
+      <p2 x="440" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="600" y="460"/>
+      <p2 x="640" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="620"/>
+      <p2 x="820" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1040" y="620"/>
+      <p2 x="1080" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="420"/>
+      <p2 x="480" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="480" y="500"/>
+      <p2 x="480" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="640" y="420"/>
+      <p2 x="640" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="640" y="460"/>
+      <p2 x="640" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="360" y="420"/>
+      <p2 x="360" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="420"/>
+      <p2 x="680" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="500"/>
+      <p2 x="680" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="720"/>
+      <p2 x="680" y="760"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="620"/>
+      <p2 x="680" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="460" y="440"/>
+      <p2 x="460" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="400" y="420"/>
+      <p2 x="400" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="560" y="420"/>
+      <p2 x="560" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="740"/>
+      <p2 x="720" y="760"/>
+    </wire>
+    <wire>
+      <p1 x="660" y="440"/>
+      <p2 x="660" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="420"/>
+      <p2 x="440" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="440" y="460"/>
+      <p2 x="440" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="600" y="420"/>
+      <p2 x="600" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="620"/>
+      <p2 x="1080" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="700" y="720"/>
+      <p2 x="700" y="740"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

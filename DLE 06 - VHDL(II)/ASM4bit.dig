@@ -35,13 +35,15 @@ entity ASM4 is
 end ASM4;
 
 architecture Equations of ASM4 is
-    signal results: integer := 0;
+    signal A_int, B_int, results: integer := 0;
     begin
+        A_int &lt;= to_integer(unsigned(A));
+        B_int &lt;= to_integer(unsigned(B));
         with F select
         results &lt;= 
-            to_integer(unsigned(A)) + to_integer(unsigned(B)) when &quot;00&quot;,
-            to_integer(unsigned(A)) - to_integer(unsigned(B)) when &quot;01&quot;,
-            to_integer(unsigned(A)) * to_integer(unsigned(B)) when &quot;10&quot;,
+            A_int + B_int when &quot;00&quot;,
+            A_int - B_int when &quot;01&quot;,
+            A_int * B_int when &quot;10&quot;,
             0 when others;
         S &lt;= std_logic_vector(to_unsigned(results, 8));
 end Equations;</string>

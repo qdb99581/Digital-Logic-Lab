@@ -15,13 +15,13 @@ END ASM4;
 ARCHITECTURE Equations OF ASM4 IS
     SIGNAL A_int, B_int, results : INTEGER := 0;
 BEGIN
-    A_int <= to_integer(unsigned(A));
-    B_int <= to_integer(unsigned(B));
+    A_int <= to_integer(signed(A));
+    B_int <= to_integer(signed(B));
     WITH F SELECT
         results <=
         A_int + B_int WHEN "00",
         A_int - B_int WHEN "01",
         A_int * B_int WHEN "10",
         0 WHEN OTHERS;
-    S <= STD_LOGIC_VECTOR(to_unsigned(results, 8));
+    S <= STD_LOGIC_VECTOR(to_signed(results, 8));
 END Equations;

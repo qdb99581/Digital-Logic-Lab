@@ -46,37 +46,39 @@ ARCHITECTURE Equations OF Comparator1 IS
 BEGIN
     input <= Ci(0) & Ci(1) & X & Y;
 
-    Ci_next(0) <= '0' WHEN input = "0000" ELSE
-    '0' WHEN input = "0001" ELSE
-    '1' WHEN input = "0010" ELSE
-    '0' WHEN input = "0011" ELSE
-    '0' WHEN input = "0100" ELSE
-    '0' WHEN input = "0101" ELSE
-    '1' WHEN input = "0110" ELSE
-    '0' WHEN input = "0111" ELSE
-    '1' WHEN input = "1000" ELSE
-    '0' WHEN input = "1001" ELSE
-    '1' WHEN input = "1010" ELSE
-    '1' WHEN input = "1011" ELSE
-    'X' WHEN input = "1100" ELSE
-    'X' WHEN input = "1101" ELSE
-    'X' WHEN input = "1110" ELSE
-    'X' WHEN input = "1111";
+    Ci_next(0) <= 
+        '0' WHEN input = "0000" ELSE
+        '0' WHEN input = "0001" ELSE
+        '1' WHEN input = "0010" ELSE
+        '0' WHEN input = "0011" ELSE
+        '0' WHEN input = "0100" ELSE
+        '0' WHEN input = "0101" ELSE
+        '1' WHEN input = "0110" ELSE
+        '0' WHEN input = "0111" ELSE
+        '1' WHEN input = "1000" ELSE
+        '0' WHEN input = "1001" ELSE
+        '1' WHEN input = "1010" ELSE
+        '1' WHEN input = "1011" ELSE
+        'X' WHEN input = "1100" ELSE
+        'X' WHEN input = "1101" ELSE
+        'X' WHEN input = "1110" ELSE
+        'X' WHEN input = "1111";
 
-    Ci_next(1) <= '0' WHEN input = "0000" ELSE
-    '1' WHEN input = "0001" ELSE
-    '0' WHEN input = "0010" ELSE
-    '0' WHEN input = "0011" ELSE
-    '1' WHEN input = "0100" ELSE
-    '1' WHEN input = "0101" ELSE
-    '0' WHEN input = "0110" ELSE
-    '1' WHEN input = "0111" ELSE
-    '0' WHEN input = "1000" ELSE
-    '1' WHEN input = "1001" ELSE
-    '0' WHEN input = "1010" ELSE
-    '0' WHEN input = "1011" ELSE
-    'X' WHEN input = "1100" ELSE
-    'X' WHEN input = "1101" ELSE
-    'X' WHEN input = "1110" ELSE
-    'X' WHEN input = "1111";
+    Ci_next(1) <= 
+        '0' WHEN input = "0000" ELSE
+        '1' WHEN input = "0001" ELSE
+        '0' WHEN input = "0010" ELSE
+        '0' WHEN input = "0011" ELSE
+        '1' WHEN input = "0100" ELSE
+        '1' WHEN input = "0101" ELSE
+        '0' WHEN input = "0110" ELSE
+        '1' WHEN input = "0111" ELSE
+        '0' WHEN input = "1000" ELSE
+        '1' WHEN input = "1001" ELSE
+        '0' WHEN input = "1010" ELSE
+        '0' WHEN input = "1011" ELSE
+        'X' WHEN input = "1100" ELSE
+        'X' WHEN input = "1101" ELSE
+        'X' WHEN input = "1110" ELSE
+        'X' WHEN input = "1111";
 END Equations;

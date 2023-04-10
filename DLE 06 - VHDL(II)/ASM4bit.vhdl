@@ -1,3 +1,5 @@
+-- ASM4 stands for Adder-Subtracter-Multiplyer 4 bits
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
@@ -5,7 +7,7 @@ USE ieee.numeric_std.all;
 entity ASM4 is
     port(
         A, B: in std_logic_vector(3 downto 0);
-        F: in std_logic_vector(1 downto 0);
+        F: in std_logic_vector(1 downto 0); -- Function selecting
         S: out std_logic_vector(7 downto 0)
     );
 end ASM4;

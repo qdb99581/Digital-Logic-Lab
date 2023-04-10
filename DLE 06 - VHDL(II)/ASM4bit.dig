@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <circuit>
-  <version>1</version>
+  <version>2</version>
   <attributes/>
   <visualElements>
     <visualElement>
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>ASM4</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>ASM4</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -20,14 +20,16 @@
         </entry>
         <entry>
           <string>Code</string>
-          <string>LIBRARY ieee;
+          <string>-- ASM4 stands for Adder-Subtracter-Multiplyer 4 bits
+
+LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
 entity ASM4 is
     port(
         A, B: in std_logic_vector(3 downto 0);
-        F: in std_logic_vector(1 downto 0);
+        F: in std_logic_vector(1 downto 0); -- Function selecting
         S: out std_logic_vector(7 downto 0)
     );
 end ASM4;
@@ -37,11 +39,11 @@ architecture Equations of ASM4 is
     begin
         with F select
         results &lt;= 
-            to_integer(signed(A)) + to_integer(signed(B)) when &quot;00&quot;,
-            to_integer(signed(A)) - to_integer(signed(B)) when &quot;01&quot;,
-            to_integer(signed(A)) * to_integer(signed(B)) when &quot;10&quot;,
+            to_integer(unsigned(A)) + to_integer(unsigned(B)) when &quot;00&quot;,
+            to_integer(unsigned(A)) - to_integer(unsigned(B)) when &quot;01&quot;,
+            to_integer(unsigned(A)) * to_integer(unsigned(B)) when &quot;10&quot;,
             0 when others;
-        S &lt;= std_logic_vector(to_signed(results, 8));
+        S &lt;= std_logic_vector(to_unsigned(results, 8));
 end Equations;</string>
         </entry>
         <entry>
@@ -107,17 +109,57 @@ end Equations;</string>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="580"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="620"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="660"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="700"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="740"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="780"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="820"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="1180" y="860"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Splitter</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>S</string>
+          <string>Input Splitting</string>
+          <string>8</string>
         </entry>
         <entry>
-          <string>Bits</string>
-          <int>8</int>
+          <string>Output Splitting</string>
+          <string>1, 1, 1, 1, 1, 1, 1, 1</string>
         </entry>
       </elementAttributes>
-      <pos x="1080" y="640"/>
+      <pos x="1040" y="640"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -127,19 +169,91 @@ end Equations;</string>
     </wire>
     <wire>
       <p1 x="1000" y="640"/>
+      <p2 x="1040" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="640"/>
       <p2 x="1080" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="720"/>
+      <p2 x="1160" y="720"/>
     </wire>
     <wire>
       <p1 x="600" y="660"/>
       <p2 x="940" y="660"/>
     </wire>
     <wire>
+      <p1 x="1060" y="660"/>
+      <p2 x="1100" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="660"/>
+      <p2 x="1180" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="580"/>
+      <p2 x="1180" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="740"/>
+      <p2 x="1180" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="740"/>
+      <p2 x="1140" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="820"/>
+      <p2 x="1180" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="680"/>
+      <p2 x="1120" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="760"/>
+      <p2 x="1120" y="760"/>
+    </wire>
+    <wire>
       <p1 x="680" y="620"/>
       <p2 x="940" y="620"/>
     </wire>
     <wire>
+      <p1 x="1100" y="620"/>
+      <p2 x="1180" y="620"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="700"/>
+      <p2 x="1180" y="700"/>
+    </wire>
+    <wire>
+      <p1 x="1140" y="780"/>
+      <p2 x="1180" y="780"/>
+    </wire>
+    <wire>
+      <p1 x="1060" y="780"/>
+      <p2 x="1100" y="780"/>
+    </wire>
+    <wire>
+      <p1 x="1100" y="860"/>
+      <p2 x="1180" y="860"/>
+    </wire>
+    <wire>
       <p1 x="640" y="600"/>
       <p2 x="640" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="660"/>
+      <p2 x="1120" y="680"/>
+    </wire>
+    <wire>
+      <p1 x="1120" y="760"/>
+      <p2 x="1120" y="820"/>
+    </wire>
+    <wire>
+      <p1 x="1140" y="740"/>
+      <p2 x="1140" y="780"/>
     </wire>
     <wire>
       <p1 x="680" y="600"/>
@@ -148,6 +262,22 @@ end Equations;</string>
     <wire>
       <p1 x="600" y="600"/>
       <p2 x="600" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1080" y="580"/>
+      <p2 x="1080" y="640"/>
+    </wire>
+    <wire>
+      <p1 x="1160" y="720"/>
+      <p2 x="1160" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="1100" y="620"/>
+      <p2 x="1100" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="1100" y="780"/>
+      <p2 x="1100" y="860"/>
     </wire>
   </wires>
   <measurementOrdering/>

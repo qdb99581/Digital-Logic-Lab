@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <circuit>
-  <version>1</version>
+  <version>2</version>
   <attributes/>
   <visualElements>
     <visualElement>
@@ -37,7 +37,7 @@ architecture Behaviors of SRFlipFlop is
     begin
         Q &lt;= Q_int;
 
-        process(CLK, S, R) -- seems this is necessary for using &quot;if-else&quot;
+        process(CLK) -- seems this is necessary for using &quot;if-else&quot;
         begin
             if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
                 if S = &apos;0&apos; and R = &apos;0&apos; then

@@ -5,20 +5,28 @@ USE ieee.numeric_std.all;
 entity SRFlipFlop is
     port(
         S, R, CLK: in std_logic;
-        Q_next: out std_logic
+        Q: out std_logic
     );
 end SRFlipFlop;
 
 architecture Behaviors of SRFlipFlop is
-    signal Qint: std_logic; -- internal value of Q
+    signal Q_int: std_logic; -- internal value of Q
 
     begin
-        Q_next <= Qint;
+        Q <= Q_int;
 
-        process(CLK) -- seems this is necessary for using "if-else"
+        process(CLK, S, R) -- seems this is necessary for using "if-else"
         begin
             if CLK'event and CLK = '1' then -- rising edge of CLK
-                Qint <= S or (not R and Qint) after 5 ns;
+                if S = '0' and R = '0' then
+                    Q_int <= Q;
+                elsif S = '1' and R = '0' then
+                    Q_int <= '1';
+                elsif S = '0' and R = '1' then
+                    Q_int <= '0';
+                else
+                    Q_int <= 'Z';
+                end if;
             end if;
         end process;
 end Behaviors;

@@ -5,3 +5,4 @@ This repository contains the answers to logic layout problems with Digital and V
 To use this repository, you will need the followings:
 1. [Digital](https://github.com/hneemann/Digital) for simulating logic layouts.
 2. [GHDL](http://ghdl.free.fr/) for compiling and executing VHDL program in Digital.
+Each folder represents one class (one week). The `materials.rar` contains the slides used during class (**Not Open Access**).

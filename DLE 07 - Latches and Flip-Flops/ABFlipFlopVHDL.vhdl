@@ -21,9 +21,9 @@ architecture Behaviors of ABFlipFlop is
                 if A = '0' and B = '0' then
                     Q_int <= '0';
                 elsif A = '1' and B = '0' then
-                    Q_int <= not Q;
+                    Q_int <= not Q_int;
                 elsif A = '0' and B = '1' then
-                    Q_int <= Q;
+                    Q_int <= Q_int;
                 else
                     Q_int <= '1';
                 end if;

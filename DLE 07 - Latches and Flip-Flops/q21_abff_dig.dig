@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>ABFF</string>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>A,B,CLK</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+USE ieee.numeric_std.all;
+
+entity ABFF is
+    port(
+        A, B, CLK: in std_logic;
+        Q_next: out std_logic
+    );
+end ABFF;
+
+architecture ABFF1 of ABFF is
+    signal Qint: std_logic; -- internal value of Q
+    signal input: std_logic_vector(0 to 1);
+
+    begin
+        input &lt;= A &amp; B;
+        Q_next &lt;= Qint;
+        
+        -- seems this is necessary for using &quot;if-else&quot;
+        -- process makes program to execute in order
+        -- only when args&apos; value changes, the process begin
+        process(CLK) 
+        begin
+            if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
+                Qint &lt;=
+                    &apos;0&apos; when input = &quot;00&quot; else
+                    Qint when input = &quot;01&quot; else
+                    not Qint when input = &quot;10&quot; else
+                    &apos;1&apos; when input = &quot;11&quot;;
+            end if;
+        end process;
+end ABFF1;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Q_next</string>
+        </entry>
+        <entry>
+          <string>Width</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="920" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes>
+        <entry>
+          <string>runRealTime</string>
+          <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
+        </entry>
+      </elementAttributes>
+      <pos x="720" y="520"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Q+</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1160" y="480"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="1020" y="480"/>
+      <p2 x="1160" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="480"/>
+      <p2 x="920" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="500"/>
+      <p2 x="920" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="520"/>
+      <p2 x="760" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="720" y="440"/>
+      <p2 x="760" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="460"/>
+      <p2 x="920" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="500"/>
+      <p2 x="760" y="520"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="440"/>
+      <p2 x="760" y="460"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

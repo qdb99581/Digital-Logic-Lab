@@ -12,11 +12,11 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>ABFF</string>
+          <string>SRFlipFlop</string>
         </entry>
         <entry>
           <string>externalInputs</string>
-          <string>A,B,CLK</string>
+          <string>S,R,CLK</string>
         </entry>
         <entry>
           <string>Code</string>
@@ -24,66 +24,65 @@
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
-entity ABFF is
+entity SRFlipFlop is
     port(
-        A, B, CLK: in std_logic;
-        Q_next: out std_logic
+        S, R, CLK: in std_logic;
+        Q: out std_logic
     );
-end ABFF;
+end SRFlipFlop;
 
-architecture ABFF1 of ABFF is
-    signal Qint: std_logic; -- internal value of Q
-    signal input: std_logic_vector(0 to 1);
+architecture Behaviors of SRFlipFlop is
+    signal Q_int: std_logic; -- internal value of Q
 
     begin
-        input &lt;= A &amp; B;
-        Q_next &lt;= Qint;
-        
-        -- seems this is necessary for using &quot;if-else&quot;
-        -- process makes program to execute in order
-        -- only when args&apos; value changes, the process begin
-        process(CLK) 
+        Q &lt;= Q_int;
+
+        process(CLK, S, R) -- seems this is necessary for using &quot;if-else&quot;
         begin
             if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
-                Qint &lt;=
-                    &apos;0&apos; when input = &quot;00&quot; else
-                    Qint when input = &quot;01&quot; else
-                    not Qint when input = &quot;10&quot; else
-                    &apos;1&apos; when input = &quot;11&quot;;
+                if S = &apos;0&apos; and R = &apos;0&apos; then
+                    Q_int &lt;= Q;
+                elsif S = &apos;1&apos; and R = &apos;0&apos; then
+                    Q_int &lt;= &apos;1&apos;;
+                elsif S = &apos;0&apos; and R = &apos;1&apos; then
+                    Q_int &lt;= &apos;0&apos;;
+                else
+                    Q_int &lt;= &apos;Z&apos;;
+                end if;
             end if;
         end process;
-end ABFF1;</string>
+end Behaviors;</string>
         </entry>
         <entry>
           <string>externalOutputs</string>
-          <string>Q_next</string>
+          <string>Q</string>
         </entry>
         <entry>
           <string>Width</string>
           <int>5</int>
         </entry>
       </elementAttributes>
-      <pos x="920" y="460"/>
+      <pos x="880" y="440"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>A</string>
+          <string>S</string>
         </entry>
       </elementAttributes>
-      <pos x="720" y="440"/>
+      <pos x="640" y="420"/>
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>B</string>
+          <string>R</string>
         </entry>
       </elementAttributes>
-      <pos x="720" y="480"/>
+      <pos x="640" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Clock</elementName>
@@ -97,7 +96,7 @@ end ABFF1;</string>
           <string>CLK</string>
         </entry>
       </elementAttributes>
-      <pos x="720" y="520"/>
+      <pos x="640" y="500"/>
     </visualElement>
     <visualElement>
       <elementName>Out</elementName>
@@ -107,41 +106,41 @@ end ABFF1;</string>
           <string>Q+</string>
         </entry>
       </elementAttributes>
-      <pos x="1160" y="480"/>
+      <pos x="1120" y="460"/>
     </visualElement>
   </visualElements>
   <wires>
     <wire>
-      <p1 x="1020" y="480"/>
-      <p2 x="1160" y="480"/>
+      <p1 x="680" y="480"/>
+      <p2 x="880" y="480"/>
     </wire>
     <wire>
-      <p1 x="720" y="480"/>
-      <p2 x="920" y="480"/>
+      <p1 x="640" y="500"/>
+      <p2 x="680" y="500"/>
     </wire>
     <wire>
-      <p1 x="760" y="500"/>
-      <p2 x="920" y="500"/>
+      <p1 x="640" y="420"/>
+      <p2 x="680" y="420"/>
     </wire>
     <wire>
-      <p1 x="720" y="520"/>
-      <p2 x="760" y="520"/>
+      <p1 x="680" y="440"/>
+      <p2 x="880" y="440"/>
     </wire>
     <wire>
-      <p1 x="720" y="440"/>
-      <p2 x="760" y="440"/>
+      <p1 x="640" y="460"/>
+      <p2 x="880" y="460"/>
     </wire>
     <wire>
-      <p1 x="760" y="460"/>
-      <p2 x="920" y="460"/>
+      <p1 x="980" y="460"/>
+      <p2 x="1120" y="460"/>
     </wire>
     <wire>
-      <p1 x="760" y="500"/>
-      <p2 x="760" y="520"/>
+      <p1 x="680" y="480"/>
+      <p2 x="680" y="500"/>
     </wire>
     <wire>
-      <p1 x="760" y="440"/>
-      <p2 x="760" y="460"/>
+      <p1 x="680" y="420"/>
+      <p2 x="680" y="440"/>
     </wire>
   </wires>
   <measurementOrdering/>

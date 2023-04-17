@@ -20,10 +20,10 @@ architecture Behaviors of SRFlipFlop is
             if CLK'event and CLK = '1' then -- rising edge of CLK
                 if S = '0' and R = '0' then
                     Q_int <= Q;
+                elsif S = '0' and R = '1' then
+                    Q_int <= '0';                    
                 elsif S = '1' and R = '0' then
                     Q_int <= '1';
-                elsif S = '0' and R = '1' then
-                    Q_int <= '0';
                 else
                     Q_int <= 'Z';
                 end if;

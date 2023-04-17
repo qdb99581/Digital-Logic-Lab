@@ -7,12 +7,12 @@
       <elementName>External</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>SRFF</string>
-        </entry>
-        <entry>
           <string>applicationType</string>
           <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>SRFlipFlop</string>
         </entry>
         <entry>
           <string>externalInputs</string>
@@ -24,30 +24,38 @@
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
-entity SRFF is
+entity SRFlipFlop is
     port(
         S, R, CLK: in std_logic;
-        Q_next: out std_logic
+        Q: out std_logic
     );
-end SRFF;
+end SRFlipFlop;
 
-architecture SRFF1 of SRFF is
-    signal Qint: std_logic; -- internal value of Q
+architecture Behaviors of SRFlipFlop is
+    signal Q_int: std_logic; -- internal value of Q
 
     begin
-        Q_next &lt;= Qint;
+        Q &lt;= Q_int;
 
-        process(CLK) -- seems this is necessary for using &quot;if-else&quot;
+        process(CLK, S, R) -- seems this is necessary for using &quot;if-else&quot;
         begin
             if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
-                Qint &lt;= S or (not R and Qint) after 5 ns;
+                if S = &apos;0&apos; and R = &apos;0&apos; then
+                    Q_int &lt;= Q;
+                elsif S = &apos;1&apos; and R = &apos;0&apos; then
+                    Q_int &lt;= &apos;1&apos;;
+                elsif S = &apos;0&apos; and R = &apos;1&apos; then
+                    Q_int &lt;= &apos;0&apos;;
+                else
+                    Q_int &lt;= &apos;Z&apos;;
+                end if;
             end if;
         end process;
-end SRFF1;</string>
+end Behaviors;</string>
         </entry>
         <entry>
           <string>externalOutputs</string>
-          <string>Q_next</string>
+          <string>Q</string>
         </entry>
         <entry>
           <string>Width</string>
@@ -80,12 +88,12 @@ end SRFF1;</string>
       <elementName>Clock</elementName>
       <elementAttributes>
         <entry>
-          <string>Label</string>
-          <string>CLK</string>
-        </entry>
-        <entry>
           <string>runRealTime</string>
           <boolean>true</boolean>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>CLK</string>
         </entry>
       </elementAttributes>
       <pos x="640" y="500"/>

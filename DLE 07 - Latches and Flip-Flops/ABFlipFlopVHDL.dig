@@ -12,11 +12,11 @@
         </entry>
         <entry>
           <string>Label</string>
-          <string>SRFlipFlop</string>
+          <string>ABFlipFlop</string>
         </entry>
         <entry>
           <string>externalInputs</string>
-          <string>S,R,CLK</string>
+          <string>A,B,CLK</string>
         </entry>
         <entry>
           <string>Code</string>
@@ -24,30 +24,30 @@
 USE ieee.std_logic_1164.all;
 USE ieee.numeric_std.all;
 
-entity SRFlipFlop is
+entity ABFlipFlop is
     port(
-        S, R, CLK: in std_logic;
+        A, B, CLK: in std_logic;
         Q: out std_logic
     );
-end SRFlipFlop;
+end ABFlipFlop;
 
-architecture Behaviors of SRFlipFlop is
+architecture Behaviors of ABFlipFlop is
     signal Q_int: std_logic; -- internal value of Q
 
     begin
         Q &lt;= Q_int;
 
-        process(CLK, S, R) -- seems this is necessary for using &quot;if-else&quot;
+        process(CLK, A, B) -- seems this is necessary for using &quot;if-else&quot;
         begin
             if CLK&apos;event and CLK = &apos;1&apos; then -- rising edge of CLK
-                if S = &apos;0&apos; and R = &apos;0&apos; then
-                    Q_int &lt;= Q;
-                elsif S = &apos;1&apos; and R = &apos;0&apos; then
-                    Q_int &lt;= &apos;1&apos;;
-                elsif S = &apos;0&apos; and R = &apos;1&apos; then
+                if A = &apos;0&apos; and B = &apos;0&apos; then
                     Q_int &lt;= &apos;0&apos;;
+                elsif A = &apos;1&apos; and B = &apos;0&apos; then
+                    Q_int &lt;= not Q;
+                elsif A = &apos;0&apos; and B = &apos;1&apos; then
+                    Q_int &lt;= Q;
                 else
-                    Q_int &lt;= &apos;Z&apos;;
+                    Q_int &lt;= &apos;1&apos;;
                 end if;
             end if;
         end process;
@@ -69,7 +69,7 @@ end Behaviors;</string>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>S</string>
+          <string>A</string>
         </entry>
       </elementAttributes>
       <pos x="640" y="420"/>
@@ -79,7 +79,7 @@ end Behaviors;</string>
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>R</string>
+          <string>B</string>
         </entry>
       </elementAttributes>
       <pos x="640" y="460"/>

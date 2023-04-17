@@ -15,7 +15,7 @@ architecture Behaviors of SRFlipFlop is
     begin
         Q <= Q_int;
 
-        process(CLK, S, R) -- seems this is necessary for using "if-else"
+        process(CLK)
         begin
             if CLK'event and CLK = '1' then -- rising edge of CLK
                 if S = '0' and R = '0' then

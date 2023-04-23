@@ -36,24 +36,26 @@ end BidirectionalShift;
 
 architecture Behavior of BidirectionalShift is
     signal prev_Q: std_logic_vector(3 downto 0);
+    signal state: std_logic_vector(1 downto 0);
     begin
+        state &lt;= LSh &amp; RSh;
         Q &lt;= prev_Q;
         
         process(CLK)
         begin
             if (CLK&apos;event and CLK=&apos;1&apos;) then
-                if L = &apos;1&apos; then 
+                if state &amp; L = &quot;001&quot; then 
                     prev_Q &lt;= D; 
                 end if;
 
-                if LSh = &apos;1&apos; then 
+                if state = &quot;10&quot; then 
                     prev_Q &lt;= prev_Q sll 1;
                     prev_Q(0) &lt;= Si;
-                elsif RSh = &apos;1&apos; then 
+                elsif state = &quot;01&quot; then 
                     prev_Q &lt;= prev_Q srl 1;
                     prev_Q(3) &lt;= Si;
                 else
-                    prev_Q &lt;= prev_Q;
+                    -- prev_Q &lt;= prev_Q;
                 end if;
             end if;
         end process;

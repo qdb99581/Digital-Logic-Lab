@@ -34,7 +34,6 @@ architecture Behavior of BidirectionalShift is
                     prev_Q <= prev_Q srl 1;
                     prev_Q(3) <= Si;
                 else
-                    -- prev_Q <= prev_Q;
                 end if;
             end if;
         end process;

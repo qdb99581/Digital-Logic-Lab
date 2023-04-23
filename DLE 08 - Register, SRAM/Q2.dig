@@ -5,7 +5,12 @@
   <visualElements>
     <visualElement>
       <elementName>In</elementName>
-      <elementAttributes/>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Select A/B</string>
+        </entry>
+      </elementAttributes>
       <pos x="240" y="720"/>
     </visualElement>
     <visualElement>
@@ -30,7 +35,12 @@
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
-      <elementAttributes/>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Enable</string>
+        </entry>
+      </elementAttributes>
       <pos x="460" y="520"/>
     </visualElement>
     <visualElement>
@@ -83,7 +93,12 @@
     </visualElement>
     <visualElement>
       <elementName>In</elementName>
-      <elementAttributes/>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Enable</string>
+        </entry>
+      </elementAttributes>
       <pos x="940" y="520"/>
     </visualElement>
     <visualElement>
@@ -164,6 +179,10 @@
         <entry>
           <string>rotation</string>
           <rotation rotation="3"/>
+        </entry>
+        <entry>
+          <string>Label</string>
+          <string>Input</string>
         </entry>
         <entry>
           <string>Bits</string>

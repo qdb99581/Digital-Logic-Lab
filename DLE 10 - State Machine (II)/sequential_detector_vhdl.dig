@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>1</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>binary_sequential_detector</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>CLK,X</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>library ieee;
+use ieee.std_logic_1164.all;
+
+entity binary_sequential_detector is
+    port (
+        CLK   : in std_logic;
+        X : in std_logic;
+        Z: out std_logic
+    );
+end entity;
+
+architecture behavioral of binary_sequential_detector is
+    type state_type is (S0, S1, S2, S3, S4);
+    signal current_state, next_state : state_type;
+begin
+    process (CLK)
+    begin
+        if rising_edge(CLK) then
+            current_state &lt;= next_state;
+        end if;
+    end process;
+
+    process (current_state, X)
+    begin
+        case current_state is
+            when S0 =&gt;
+				Z &lt;= &apos;0&apos;;
+                if X = &apos;1&apos; then
+                    next_state &lt;= S1;
+                else
+                    next_state &lt;= S0;
+                end if;
+            when S1 =&gt;
+				Z &lt;= &apos;0&apos;;
+                if X = &apos;0&apos; then
+                    next_state &lt;= S2;
+                else
+                    next_state &lt;= S1;
+                end if;
+            when S2 =&gt;
+				Z &lt;= &apos;0&apos;;
+                if X = &apos;0&apos; then
+                    next_state &lt;= S3;
+                else
+                    next_state &lt;= S1;
+                end if;
+            when S3 =&gt;
+                if X = &apos;1&apos; then
+                    Z &lt;= &apos;1&apos;;
+                    next_state &lt;= S4;
+                else
+					Z &lt;= &apos;0&apos;;
+                    next_state &lt;= S0;
+                end if;
+			when S4 =&gt;
+				Z &lt;= &apos;0&apos;;
+				if X = &apos;0&apos; then
+					next_state &lt;= S2;
+				else
+					next_state &lt;= S0;
+				end if;
+            when others =&gt;
+                next_state &lt;= S0;
+        end case;
+    end process;
+end architecture;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>Z</string>
+        </entry>
+      </elementAttributes>
+      <pos x="760" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes/>
+      <pos x="620" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Clock</elementName>
+      <elementAttributes/>
+      <pos x="620" y="360"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes/>
+      <pos x="940" y="380"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="620" y="400"/>
+      <p2 x="760" y="400"/>
+    </wire>
+    <wire>
+      <p1 x="620" y="360"/>
+      <p2 x="760" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="820" y="380"/>
+      <p2 x="940" y="380"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>

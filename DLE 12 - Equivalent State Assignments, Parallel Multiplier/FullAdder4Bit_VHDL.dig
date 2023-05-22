@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<circuit>
+  <version>2</version>
+  <attributes/>
+  <visualElements>
+    <visualElement>
+      <elementName>External</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>FullAdder4Bit</string>
+        </entry>
+        <entry>
+          <string>applicationType</string>
+          <appType>GHDL</appType>
+        </entry>
+        <entry>
+          <string>externalInputs</string>
+          <string>A:4,B:4</string>
+        </entry>
+        <entry>
+          <string>Code</string>
+          <string>-- ASM4 stands for Adder-Subtracter-Multiplyer 4 bits
+
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+USE ieee.numeric_std.ALL;
+
+ENTITY FullAdder4Bit IS
+    PORT (
+        A, B : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+        S : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+        C4: OUT STD_LOGIC
+    );
+END FullAdder4Bit;
+
+ARCHITECTURE Equations OF FullAdder4Bit IS
+    SIGNAL A_int, B_int, results : INTEGER := 0;
+BEGIN
+    A_int &lt;= to_integer(signed(A));
+    B_int &lt;= to_integer(signed(B));
+    results &lt;= A_int + B_int;
+    S &lt;= STD_LOGIC_VECTOR(to_signed(results, 5));
+    C4 &lt;= S(4);
+END Equations;</string>
+        </entry>
+        <entry>
+          <string>externalOutputs</string>
+          <string>S:5,C4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="860" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>A</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>In</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>B</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>4</int>
+        </entry>
+      </elementAttributes>
+      <pos x="680" y="460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>Sum</string>
+        </entry>
+        <entry>
+          <string>Bits</string>
+          <int>5</int>
+        </entry>
+      </elementAttributes>
+      <pos x="1080" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>C4</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1080" y="480"/>
+    </visualElement>
+  </visualElements>
+  <wires>
+    <wire>
+      <p1 x="940" y="480"/>
+      <p2 x="1080" y="480"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="420"/>
+      <p2 x="860" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="420"/>
+      <p2 x="1080" y="420"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="440"/>
+      <p2 x="860" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="920" y="440"/>
+      <p2 x="940" y="440"/>
+    </wire>
+    <wire>
+      <p1 x="680" y="460"/>
+      <p2 x="840" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="440"/>
+      <p2 x="840" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="940" y="440"/>
+      <p2 x="940" y="480"/>
+    </wire>
+  </wires>
+  <measurementOrdering/>
+</circuit>
